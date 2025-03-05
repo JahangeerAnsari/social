@@ -2,7 +2,10 @@ import Input from "@/components/input";
 import Modal from "@/components/Modal";
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import axios from "axios";
+import { signIn } from "next-auth/react";
 import { useCallback, useState } from "react";
+import toast from "react-hot-toast";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -12,18 +15,30 @@ const RegisterModal = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-  const onSubmit = useCallback(() => {
+  const onSubmit = useCallback( async() => {
     try {
+      console.log("calling-----");
+      
       setIsLoading(true);
-
+      await axios.post('/api/register', {
+        email,
+        name,
+        username,
+        password
+      })
+      toast.success('Account Created!')
+      signIn('credentials', {
+        email,
+        password
+      })
       registerModal.onClose();
     } catch (error) {
       console.log("[loginform]", error);
-            
+      toast.error('Failed to account create')
     } finally {
       setIsLoading(false)
     }
-  }, []);
+  }, [registerModal, email, name, username, password]);
   const handleOpenLoginModal = useCallback(() => {
     if (isLoading) {
       return;

@@ -10,11 +10,13 @@ const LoginModal = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const onSubmit = useCallback(() => {
+  const onSubmit = useCallback(() => {
+      console.log("submit");
+      
         try {
             setIsLoading(true);
 
-            loginModal.onClose
+            loginModal.onClose()
         } catch (error) {
            console.log("[loginform]", error);
             

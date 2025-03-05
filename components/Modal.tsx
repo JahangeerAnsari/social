@@ -35,8 +35,8 @@ const Modal = ({
     if (disabled) {
       return;
     }
-    onClose();
-  }, [disabled, onClose]);
+    onSubmit();
+  }, [disabled, onSubmit]);
   if (!isOpen) {
     return null;
   }
