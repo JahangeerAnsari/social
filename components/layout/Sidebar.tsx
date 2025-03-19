@@ -13,16 +13,19 @@ const Sidebar = () => {
       label: "Notification",
       href: "/notification",
       icon: BiNotification,
+      auth: true,
     },
     {
       label: "Home",
       href: "/",
       icon: BsHouseFill,
+      auth: false,
     },
     {
       label: "Profile",
       href: "/",
       icon: BiSolidUser,
+      auth: true,
     },
   ];
   return (
@@ -36,10 +39,16 @@ const Sidebar = () => {
               key={item.href}
               label={item.label}
               icon={item.icon}
+              auth={item?.auth}
             />
           ))}
           {currentUser && (
-            <SidebarItem onClick={() => signOut()} icon={BiLogOut} label="Logout" />
+            <SidebarItem
+              auth={false}
+              onClick={() => signOut()}
+              icon={BiLogOut}
+              label="Logout"
+            />
           )}
           <SidebarTweetButton />
         </div>

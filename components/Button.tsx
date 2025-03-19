@@ -2,9 +2,9 @@ import { IconType } from "react-icons";
 
 interface ButtonProps {
   secondary: boolean;
-  fullWidth: boolean;
+  fullWidth?: boolean;
   label: string;
-  large: boolean;
+  large?: boolean;
   outline?: boolean;
   disabled?: boolean;
   onClick: () => void;

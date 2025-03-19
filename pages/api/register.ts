@@ -17,6 +17,13 @@ export default async function handler(
     if (!email || !password || !username || !name) {
       return res.status(400).json({ error: "All fields are required." });
     }
+     const existingUser = await prisma.user.findUnique({
+       where: { email },
+     });
+
+     if (existingUser) {
+       return res.status(400).json({ error: "Email is already in use" });
+     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
