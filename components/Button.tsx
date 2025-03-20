@@ -1,7 +1,7 @@
 import { IconType } from "react-icons";
 
 interface ButtonProps {
-  secondary: boolean;
+  secondary?: boolean;
   fullWidth?: boolean;
   label: string;
   large?: boolean;
