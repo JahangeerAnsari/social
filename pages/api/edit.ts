@@ -1,23 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import serverAuth from "@/lib/serverAuth";
 import prismadb from '@/lib/prismadb'
-import { AnyMxRecord } from "node:dns";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
   authOptions: any
 ) {
   if (req.method !== "PATCH") {
-    console.log("METHOD====>", req.method);
-
     return res.status(405).end();
   }
   try {
-    console.log("try blockkkkk");
-
     const { currentUser } = await serverAuth(req, res,authOptions);
-    console.log("currentUser at edit", currentUser);
-
     const { name, username, bio, profileImage, coverImage } = req.body;
     if (!name || !username) {
       throw new Error("Missing fields");

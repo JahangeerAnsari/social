@@ -46,7 +46,8 @@ const EditModal = () => {
       });
       // it will imidiate refresh
         mutateFetchedUser();
-        toast.success('User details updated')
+      toast.success('User details updated');
+      editModal.onClose();
     } catch (error) {
       toast.error("Error on edit modal");
     } finally {
